@@ -269,7 +269,7 @@
                     document.querySelector('.table2-content').innerHTML = (this.responseText);
                 }
             }
-            xmlhttp.open("GET","x.php?user_id="+str,true);
+            xmlhttp.open("GET","requests.php?user_id="+str,true);
             xmlhttp.send();
         }
 
@@ -284,7 +284,7 @@
                     document.querySelector('.order-items .row').innerHTML = (this.responseText);
                 }
             }
-            xmlhttp.open("GET","x.php?id="+str,true);
+            xmlhttp.open("GET","requests.php?id="+str,true);
             xmlhttp.send();
         }
 
@@ -300,7 +300,7 @@
                     document.querySelector('.order-items .row').innerHTML = (this.responseText);
                 }
             }
-            xmlhttp.open("GET","x.php?id="+str,true);
+            xmlhttp.open("GET","requests.php?id="+str,true);
             xmlhttp.send();
         }
 
@@ -320,7 +320,7 @@
             let toVal = to.value;
             let usersVal = users.value;
 
-            xmlhttp.open("GET","x.php?from="+fromVal+"&to="+toVal+"&users="+usersVal,true);
+            xmlhttp.open("GET","requests.php?from="+fromVal+"&to="+toVal+"&users="+usersVal,true);
             xmlhttp.send();
         }
     </script>
