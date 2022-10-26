@@ -45,7 +45,7 @@
                     <a href="service.html" class="nav-item nav-link">Users</a>
                     <a href="menu.html" class="nav-item nav-link">Manual Orders</a>
                     <a href="checks.php" class="nav-item nav-link">Checks</a>
-                    <a href="orders.php" class="nav-item nav-link active">Orders</a>
+                    <a href="orders.php" class="nav-item nav-link">Orders</a>
 
                 </div>
             </div>

@@ -4,10 +4,10 @@
 
 class Order extends DB
 {
-
-    
     public function __construct(){}
+
     static protected $table = 'orders';
+    
     static function get()
     {
         return Order::getAll(Order::$table);
