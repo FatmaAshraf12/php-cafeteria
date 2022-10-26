@@ -1,12 +1,11 @@
 <?php
 include __DIR__ . '/layout/header.php';
-
 require_once __DIR__ . '/classes/order.php';
-$order = new Order();
-$orders = $order->getWith("users" , "user_id" , "id");
-?>
+require_once __DIR__ . '/classes/product_order.php';
 
-   
+$orders = Order::getWith("users" , "user_id" , "id");
+var_dump(ProductOrder::getByOrderId(2));
+?>
 
     <!-- Page Header Start -->
     <div class="container-fluid page-header mb-5 position-relative overlay-bottom">
@@ -67,25 +66,11 @@ $orders = $order->getWith("users" , "user_id" , "id");
                             <p>COFFEe</p>
                             <span class="amount">255</span>
                         </div>
-                        <div class="col-md-2 text-center single-order-product">
-                            <img width="130" src='http://localhost/phpProject-main/phpProject-main/img/menu-3.jpg' class="position-relative" alt="">
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill cart-num">
-                                <span class="visually-hidden">150</span>
-                            </span>
-                            <p>COFFEe</p>
-                            <span class="amount">255</span>
-                        </div>
-                        <div class="col-md-2 text-center single-order-product">
-                            <img width="130" src='http://localhost/phpProject-main/phpProject-main/img/menu-3.jpg' class="position-relative" alt="">
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill cart-num">
-                                <span class="visually-hidden">150</span>
-                            </span>
-                            <p>COFFEe</p>
-                            <span class="amount">255</span>
-                        </div>
+                        
+                        
                     </div>
                     <div class="total">
-                        <p> Total : 450 LE</p>
+                        <p> Total : <?php echo $single_order['total']; ?> LE</p>
                     </div>
                 </div>
             <?php endforeach; ?>
