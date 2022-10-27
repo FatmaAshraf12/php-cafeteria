@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="css/regester.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="login-page">
+      <div class="form">
+        <form name="form1" class="register-form">
+          <input
+          id="username"
+            type="text"
+            placeholder=" username  "
+            pattern="[a-zA-Z]{3,}"
+            required=""
+            oninvalid="this.setCustomValidity('username should be more than 3 characters')"
+            oninput="setCustomValidity('')" ></iput>
+          <input
+          id="password"
+            type="password"
+            placeholder="password"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}"
+            required=""
+            oninvalid="this.setCustomValidity('password should be 8chracters & contain number and capital and small character')"
+            oninput="setCustomValidity('')" ></iput>
+
+            <input
+            id="phone"
+            type="phone number"
+            placeholder="phone number"
+            pattern="01[012][0-9]{8}"
+            required=""
+            oninvalid="this.setCustomValidity('phone number should start with 010 or 011 or 012 and should be 11 number')"
+            oninput="setCustomValidity('')" ></iput>
+            
+          <button
+            name="submit"
+            type="submit"
+            class="btn btn-primary"
+          >
+            SAVE
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- <script src="index.js"></script> -->
+    <script src="js/regester.js"></script>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+h1 {
+  font-family: "Brush Script MT", cursive;
+}
+
+body {
+  background-image: url("../../img/coffee-beans-dark-background-top-view-coffee-concept.jpg");
+  background-color: rgba(0, 0, 0, 0.856);
+  background-size: 100%;
+}
+input {
+  margin-bottom: 10px;
+  width: 300px;
+  border-radius: 10px;
+}
+input[type="file"] {
+  background-color: aliceblue;
+}
+
+input:invalid,
+select,
+textarea {
+  color: red;
+}
+
+input:valid,
+select,
+textarea {
+  color: green;
+}
+
+h1 {
+  color: aliceblue;
+}
+label {
+  color: aliceblue;
+}
