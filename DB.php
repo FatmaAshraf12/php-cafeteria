@@ -152,11 +152,17 @@ class DB
 
     static public function getByPaginate($table, $cond , $from , $num)
     {
+
+        var_dump($table,$key,$value);
+        $query = "SELECT * FROM $table WHERE $key=$value";
+
         $query = "SELECT * ,$table.id as id1 FROM $table WHERE $cond LIMIT $from , $num";
        // echo $query;
+
         $sql = DB::$connection->prepare($query);
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC);
+      
     }
 
 
@@ -224,10 +230,10 @@ class DB
      }
     
     
-    static public function query_excute($query)
+    static public function query($query)
     {
-        // $query = "SELECT * FROM $table WHERE $key=$value";
+        // var_dump($query);
         $sql = DB::$connection->prepare($query);
-        return $sql->fetchAll(PDO::FETCH_ASSOC);
+          return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 }

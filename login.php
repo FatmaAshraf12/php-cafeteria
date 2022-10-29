@@ -1,21 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-
-  <link href="./assets/css/login.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
-</head>
-
-<body>
-  div
-  <section id="formSection">
-    <?php
+<?php include __DIR__ . '/layout/header.php' ?>
+<section id="formSection">
+  <?php
 session_start();
   // var_dump('cnxllncxln');
 if (isset($_SESSION['errors'])) {
@@ -29,7 +14,18 @@ if (isset($_SESSION['errors'])) {
 }
 
 ?>
-    <div class="container align-content-center">
+
+<div class="container-fluid page-header mb-5 position-relative overlay-bottom">
+        <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
+            <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">login</h1>
+            <div class="d-inline-flex mb-lg-5">
+                <p class="m-0 text-white"><a class="text-white" href="">Home</a></p>
+                <p class="m-0 text-white px-2">/</p>
+                <p class="m-0 text-white">Login</p>
+            </div>
+        </div>
+    </div>
+<div class="container align-content-center">
       <div class="row">
         <div class="col-md-3"></div>
         <div class="col col-md-6 p-3">
@@ -74,6 +70,6 @@ if (isset($_SESSION['errors'])) {
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
     crossorigin="anonymous"></script>
-</body>
-
-</html>
+    <?php
+include __DIR__ . '/layout/footer.php';
+?>

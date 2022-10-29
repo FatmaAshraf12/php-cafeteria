@@ -1,5 +1,5 @@
 <?php
-require_once('DB.php');
+
 function validator($data, $rules){
 	$errors = [];
 
@@ -66,7 +66,7 @@ function validator($data, $rules){
 					if(empty($t[0]) || empty($t[1])){
 						throw new Exception("Your Unique parameters is not valid");
 					}
-					$exist = DB::query_excute("SELECT * FROM {$t[0]} WHERE $t[1]='{$data[$k]}' LIMIT 1");
+					$exist = one("SELECT * FROM {$t[0]} WHERE $t[1]='{$data[$k]}' LIMIT 1");
 
 					if ($exist) {
 						$errors[] = $data[$k].' has already been taken.';
@@ -79,7 +79,7 @@ function validator($data, $rules){
 					if(empty($t[0]) || empty($t[1])){
 						throw new Exception("Your Exists parameters is not valid");
 					}
-					$exist =  DB::query_excute("SELECT * FROM {$t[0]} WHERE $t[1]='{$data[$k]}' LIMIT 1");
+					$exist = one("SELECT * FROM {$t[0]} WHERE $t[1]='{$data[$k]}' LIMIT 1");
 
 					if (!$exist) {
 						$errors[] = $data[$k]." doesn't match our records.";

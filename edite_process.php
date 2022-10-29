@@ -2,12 +2,31 @@
 
 require_once('User.php');
 require_once('save_image.php');
-$_REQUEST['image']=save('user',$_FILES);
+require_once('validator.php');
+session_start();
+$errors = validator($_REQUEST, [
+	'name' => 'required|string|min:3|max:50',
+	'email' => 'required|email|string|min:10|max:255',
+	'password' => 'required|string|min:8',
+	'room' => 'required|numeric',
+	'ext' => 'required|numeric',
+]);
 
+$result=save('user',$_FILES);
+if ($result) {
+    $_REQUEST['image']=save('user',$_FILES);
+}else{
+    $errors['image']='insert valied image';
+}
 
-
-if(User::update_user(['id'=>$_REQUEST['id']],$_REQUEST))
-{
- echo 'successfull updated!!!!!!!';
+if (count($errors) > 0) {
+	$_SESSION['errors'] = $errors;
+	header('location:admin_add_user/addUser.php');
+}else{
     
+    if(User::update_user(['id'=>$_REQUEST['id']],$_REQUEST))
+    {
+        header('location:users.php');
+        
+    }
 }

@@ -7,7 +7,7 @@ session_start();
 $errors = validator($_REQUEST, [
 	'name' => 'required|string|min:3|max:50',
 	'email' => 'required|email|string|min:10|max:255',
-	'password' => 'required|numeric|min:8',
+	'password' => 'required|string|min:8',
 	'room' => 'required|numeric',
 	'ext' => 'required|numeric',
 ]);
