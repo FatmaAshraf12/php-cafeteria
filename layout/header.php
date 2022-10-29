@@ -21,10 +21,19 @@
     <!-- Libraries Stylesheet -->
     <link href="assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="assets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="assets/css/style.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="assets/css/style2.css">
+    <link href="assets/css/my_orders.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <!-- date picker css -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link href="assets/css/my_orders.css" rel="stylesheet">
 </head>
 
 <body>
@@ -41,9 +50,10 @@
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto p-4">
                     <a href="index.html" class="nav-item nav-link ">Home</a>
-                    <a href="about.html" class="nav-item nav-link">Products</a>
+                    <a href="product.php" class="nav-item nav-link">Products</a>
                     <a href="service.html" class="nav-item nav-link">Users</a>
-                    <a href="menu.html" class="nav-item nav-link">Manual Orders</a>
+                    <a href="manualorders.php" class="nav-item nav-link">Manual Orders</a>
+                    <a href="myorders.php" class="nav-item nav-link">My Orders</a>
                     <a href="checks.php" class="nav-item nav-link">Checks</a>
                     <a href="orders.php" class="nav-item nav-link">Orders</a>
 

@@ -58,6 +58,10 @@ thead {
     background-color: #e7bf8f26;
     padding-bottom: 9px;
     margin-right: 10px;
+    flex: 23%;
+    max-width: 23%;
+    width: 23%;
+    margin-bottom: 10px;
 }
 
 
@@ -127,10 +131,75 @@ button.btn.btn-primary.btn-custom {
 .pagination a {
     margin: 10px;
     padding: 0px 5px;
+    cursor: pointer;
 }
 
 .pagination {
 
     width: 100%;
     justify-content: center;
+}
+
+input[name="updateStatus"] {
+    background-color: #795548;
+    line-height: 1;
+    border-color: #795548;
+    color: #fff;
+}
+
+.order-content .single-order-product {
+    flex: 15%;
+    max-width: 15%;
+    width: 15%;
+}
+
+.row.mt-5.table-responsive {
+    margin: 0;
+}
+
+.order-items.my-orders {
+    border: 1px solid #4e342e;
+    margin: 0 !important;
+    padding: 0;
+}
+
+thead th {
+    text-align: center;
+}
+
+.pagination a.active {
+    border: 1px solid #795548;
+}
+
+
+.menu-price {
+    position: absolute;
+    margin: 0;
+    top: -1px;
+    right: 17px;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 45px;
+    color: #33211D;
+    background: #DA9F5B;
+    font-size: 15px;
+}
+
+.table.table-bordered tbody,
+table.table.table1-orders tbody {
+    display: block;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.table.table-bordered thead,
+.table.table-bordered tbody tr,
+table.table.table1-orders thead,
+table.table.table1-orders tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
 }
