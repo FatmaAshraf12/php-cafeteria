@@ -1,21 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="addProduct.css" />
-  </head>
-  <body>
+<?php
+include __DIR__ . '/layout/header.php';?>
 
   <?php
+  
 require_once('Category.php');
 
 $category=Category::get_Category($_REQUEST['id']);
@@ -33,6 +20,17 @@ if (isset($_SESSION['errors'])) {
 	echo '</div>';
 	unset($_SESSION['errors']);
 }?>
+
+<div class="container-fluid page-header mb-5 position-relative overlay-bottom">
+        <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
+            <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">Upate Category</h1>
+            <div class="d-inline-flex mb-lg-5">
+                <p class="m-0 text-white"><a class="text-white" href="">Home</a></p>
+                <p class="m-0 text-white px-2">/</p>
+                <p class="m-0 text-white">Upate Category</p>
+            </div>
+        </div>
+    </div>
     <form class="mx-auto mt-4" name="form1" style="width: 350px" method="post" action="category_edit_process.php">
       <h1 class="p-2 mt-5">Add  category</h1>
       
@@ -54,5 +52,6 @@ if (isset($_SESSION['errors'])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     <script src="addproduct.js"></script>
-  </body>
-</html>
+    <?php
+include __DIR__ . '/layout/footer.php';
+?>

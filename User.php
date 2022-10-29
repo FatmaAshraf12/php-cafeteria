@@ -24,6 +24,9 @@ class User extends DB
     {
         return User::getOne(User::$table,$id);
     }
-     
+    public static function user_query($query)
+    {
+        return User::query($query);
+    }
 }
 

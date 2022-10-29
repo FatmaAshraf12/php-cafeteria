@@ -76,15 +76,17 @@ class DB
 
     static public function getBy($table, $key,$value)
     {
+        var_dump($table,$key,$value);
         $query = "SELECT * FROM $table WHERE $key=$value";
         $sql = DB::$connection->prepare($query);
         return $sql->fetchAll(PDO::FETCH_ASSOC);
+      
     }
     
-    static public function query_excute($query)
+    static public function query($query)
     {
-        // $query = "SELECT * FROM $table WHERE $key=$value";
+        // var_dump($query);
         $sql = DB::$connection->prepare($query);
-        return $sql->fetchAll(PDO::FETCH_ASSOC);
+          return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 }
