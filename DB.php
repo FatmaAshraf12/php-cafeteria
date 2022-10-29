@@ -1,7 +1,7 @@
 <?php
 class DB
 {
-    static private $connection;
+    static public $connection;
     private function __construct($database_type, $host, $database_name, $username, $password)
     {
         $db = "$database_type:host=$host;dbname=$database_name";
@@ -159,6 +159,7 @@ class DB
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
      ////////////////////////////// GET FROM TWO TABLES  ////////////////////////////////////
   
      static public function getFromTwoTables($cols, $table1 ,$table2 , $cond ,$group_by=null )
@@ -222,7 +223,11 @@ class DB
         echo $pagLink;
      }
     
-
-     
     
+    static public function query_excute($query)
+    {
+        // $query = "SELECT * FROM $table WHERE $key=$value";
+        $sql = DB::$connection->prepare($query);
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

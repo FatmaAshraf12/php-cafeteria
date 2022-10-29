@@ -12,6 +12,21 @@
 </head>
 
 <body>
+<?php
+session_start();
+if (isset($_SESSION['errors'])) {
+
+	echo '<div class="alert alert-danger">';
+	foreach ($_SESSION['errors'] as $error) {
+		echo "<div>{$error}</div>";
+	}
+	echo '</div>';
+	unset($_SESSION['errors']);
+}
+
+?>
+
+
   <section id="formSection">
     <div class="container align-content-center">
       <div class="row">
@@ -20,10 +35,10 @@
           <div class="outForm w-75 border-1 p-2 p-lg-5 p-3 m-auto mb-5 rounded">
             <h1 class="p-2">Add New User</h1>
 
-            <form action="register_process.php" method="post" enctype="multipart/form-data" class="p-0">
+            <form action="../register_process.php" method="post" enctype="multipart/form-data" class="p-0">
               <div class="input-group mb-2">
                 <input type="text" name="name" class="form-control" id="userName" placeholder="Name"
-                  aria-describedby="userNameFeedback" required />
+                  aria-describedby="userNameFeedback"  />
                 <div id="userNameFeedback" class="invalid-feedback">
                   Please enter valid username as char only.
                 </div>
@@ -31,7 +46,7 @@
 
               <div class="input-group mb-2">
                 <input type="email" name="email" class="form-control" id="email" placeholder="Email" aria-describedby="emailFeedback"
-                  required />
+                   />
                 <div id="userNameFeedback" class="invalid-feedback">
                   Please enter valid Email.
                 </div>
@@ -39,7 +54,7 @@
 
               <div class="input-group mb-2">
                 <input type="password" name="password" class="form-control" id="password" placeholder="Password"
-                  aria-describedby="passwordFeedback" required />
+                  aria-describedby="passwordFeedback"  />
                 <div id="passwordFeedback" class="invalid-feedback">
                   Password must be 8 chars at least and at least 1 capital
                   letter , 1 small , 1 number .
@@ -47,8 +62,8 @@
               </div>
 
               <div class="input-group mb-2">
-                <input  type="password" class="form-control" id="confirmpassword" placeholder="Confirm Password"
-                  aria-describedby="confirm_passwordFeedback" required />
+                <input type="password" class="form-control" id="confirmpassword" placeholder="Confirm Password"
+                  aria-describedby="confirm_passwordFeedback"  />
                 <div id="confirm_passwordFeedback" class="invalid-feedback">
                   Password must be 8 chars at least and at least 1 capital
                   letter , 1 small , 1 number .
@@ -56,11 +71,11 @@
               </div>
 
               <div class="input-group mb-2">
-                <input type="number" name="room" class="form-control" id="roomNo" placeholder="Room NO" required />
+                <input type="number" name="room" class="form-control" id="roomNo" placeholder="Room NO"  />
               </div>
 
               <div class="input-group mb-2">
-                <input type="number" name="ext" class="form-control" id="ext" placeholder="EXT" required />
+                <input type="number" name="ext" class="form-control" id="ext" placeholder="EXT"  />
               </div>
               <div class="input-group mb-2">
                 <input type="file" name="image" class="form-control" placeholder="Upload Profile Photo" />
