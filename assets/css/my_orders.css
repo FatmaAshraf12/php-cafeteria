@@ -1,34 +1,42 @@
-i.date{
+i.date {
     font-size: 48px;
-    color: #dc9f5b;
+    color: #795548;
 }
 
-input{
-    border: 1px solid #dc9f5b;
-    
+input {
+    border: 1px solid #795548;
+
 }
-.daterangepicker td.active, .daterangepicker td.active:hover {
-    background-color: #dc9f5b;
+
+.daterangepicker td.active,
+.daterangepicker td.active:hover {
+    background-color: #795548;
     border-color: transparent;
     /* color: #fff; */
 }
-.pluse{
+
+.pluse {
     width: 50px;
     height: 50px;
     padding: 0%;
 }
-.table-bordered,th,td,tr{
-    border: 1px solid #dc9f5b !important;
+
+.table-bordered,
+th,
+td,
+tr {
+    border: 1px solid #795548 !important;
 }
 
-.ord{
-height: auto;    
-/* border: 1px solid rebeccapurple; */
-background-color: #fff3e6;
-position: relative;
-box-sizing: border-box;
+.ord {
+    height: auto;
+    /* border: 1px solid rebeccapurple; */
+    background-color: #fff3e6;
+    position: relative;
+    box-sizing: border-box;
 }
-.ord .salary{
+
+.ord .salary {
     position: absolute;
     right: 0px;
     margin-right: 15px;
@@ -41,40 +49,42 @@ box-sizing: border-box;
     border-radius: 45px;
     color: #33211D;
     background: #DA9F5B;
-    
-}
-.ord p{
-font-size: 16px;
-color: #33211D;
-line-height: 20px;
-margin: 0px;
-text-align: center;
-font-weight: bold;
-    }
 
-.ord .imge{
-    width: 80%;        
-    border: 1px solid #DA9F5B ;
+}
+
+.ord p {
+    font-size: 16px;
+    color: #33211D;
+    line-height: 20px;
+    margin: 0px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.ord .imge {
+    width: 80%;
+    border: 1px solid #795548;
     border-radius: 25%;
     margin: 10px;
     height: 150px;
     overflow: hidden;
     object-fit: cover;
-    }
+}
 
+/*
 img{
 width: 100%;
 height: 100%;
-display: block; /* remove extra space below image */
-}
-.pointer{
+display: block; 
+}*/
+.pointer {
     cursor: pointer;
 }
 
-.total{
+.total {
     font-size: large;
     font-weight: bold;
-    
+
 }
 
 /* .active{
