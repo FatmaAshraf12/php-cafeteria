@@ -153,11 +153,7 @@ class DB
     static public function getByPaginate($table, $cond , $from , $num)
     {
 
-        var_dump($table,$key,$value);
-        $query = "SELECT * FROM $table WHERE $key=$value";
-
-        $query = "SELECT * ,$table.id as id1 FROM $table WHERE $cond LIMIT $from , $num";
-       // echo $query;
+        $query = "SELECT * , $table.id as id1 FROM $table WHERE $cond LIMIT $from , $num";
 
         $sql = DB::$connection->prepare($query);
         $sql->execute();

@@ -11,7 +11,7 @@ $category=Category::get_Category($_REQUEST['id']);
 ?>
 
   <?php
-session_start();
+//session_start();
 if (isset($_SESSION['errors'])) {
 	echo '<div class="alert alert-danger">';
 	foreach ($_SESSION['errors'] as $error) {

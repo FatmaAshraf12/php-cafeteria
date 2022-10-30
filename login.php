@@ -1,7 +1,7 @@
 <?php include __DIR__ . '/layout/header.php' ?>
 <section id="formSection">
   <?php
-session_start();
+//session_start();
   // var_dump('cnxllncxln');
 if (isset($_SESSION['errors'])) {
 

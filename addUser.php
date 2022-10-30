@@ -1,8 +1,9 @@
 <?php
+//echo __DIR__ . '/layout/header.php';
 include __DIR__ . '/layout/header.php';?>
 
 <?php
-session_start();
+//session_start();
 if (isset($_SESSION['errors'])) {
 
 	echo '<div class="alert alert-danger">';

@@ -1,7 +1,7 @@
 <?php 
 
 require_once('./Category.php');
-session_start();
+//session_start();
 $errors=[];
 $flag=false;
 if (isset($_REQUEST["name"])){

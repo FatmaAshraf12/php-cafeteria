@@ -21,7 +21,7 @@ if ($result) {
 
 if (count($errors) > 0) {
 	$_SESSION['errors'] = $errors;
-	header('location:admin_add_user/addUser.php');
+	header('location:edit.php');
 }else{
     
     if(User::update_user(['id'=>$_REQUEST['id']],$_REQUEST))
