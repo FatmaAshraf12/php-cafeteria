@@ -3,6 +3,9 @@
     require_once __DIR__ . '/classes/order.php';
     require_once __DIR__ . '/classes/product_order.php';
     require_once __DIR__ . '/classes/paginator.php';
+//session_start();
+    //var_dump( $_SESSION);
+
 ?>
 
     <div class="container-fluid page-header mb-5 position-relative overlay-bottom">
