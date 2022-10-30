@@ -20,18 +20,26 @@ function Even($user)
        return FALSE; 
 }
 $row=array_filter($users, "Even");
+//var_dump($row[1]);
+
+//var_dump($row[1]['password']);
 
 if ($row){
- 
+    
     if ($row[0]['password'] == $_REQUEST['password']) {
 
         $_SESSION['user_id'] = $row[0]['id'];
-       
-        header('location:users.php');   
+       //echo 'tesssst';
+       //die();
+        header('location:index.php');   
 
     } else {
         $_SESSION['error'] = 'email or password are not found';
-        header('location:login.php');   
+    /*    echo 'wwwwwwwww';
+        exit();
+     */   header('location:login.php');   
+
+        
     }
 }else {
     $_SESSION['error'] = 'email or password are not found';

@@ -6,6 +6,8 @@ require_once __DIR__ . '/views.php';
 
 require_once __DIR__ . '/classes/cart.php';
 
+session_start();
+
 /********************* display orders by users **************************/
 if(isset($_GET['user_id'])){
     $id = intval($_GET['user_id']);

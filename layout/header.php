@@ -1,3 +1,7 @@
+<?php require_once 'isAdmin.php';
+$admin = is_admin();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,13 +59,31 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto p-4">
-                    <a href="index.html" class="nav-item nav-link ">Home</a>
+                <?php if((Auth::check() && Auth::user()['role'] != 'admin')){?>?
+
+                    <a href="index.php" class="nav-item nav-link ">Home</a>
                     <a href="product.php" class="nav-item nav-link">Products</a>
-                    <a href="service.html" class="nav-item nav-link">Users</a>
-                    <a href="manualorders.php" class="nav-item nav-link">Manual Orders</a>
                     <a href="myorders.php" class="nav-item nav-link">My Orders</a>
+                    <a href="logout.php" class="nav-item nav-link">Logout</a>
+
+               <?php }
+                    else if($admin) {?>?
+
                     <a href="checks.php" class="nav-item nav-link">Checks</a>
                     <a href="orders.php" class="nav-item nav-link">Orders</a>
+                    <a href="users.php" class="nav-item nav-link">Users</a>
+                    <a href="orders.php" class="nav-item nav-link">Products</a>
+                    <a href="orders.php" class="nav-item nav-link">Add Product</a>
+                    <a href="manualorders.php" class="nav-item nav-link">Manual Orders</a>
+                    <a href="logout.php" class="nav-item nav-link">Logout</a>
+
+            <?php }
+            else if(Auth::guest()){
+                ?>
+
+                    <a href="login.php" class="nav-item nav-link">Login</a>
+                    <a href="addUser.php" class="nav-item nav-link">Register</a>
+                    <?php }?>
 
                 </div>
             </div>

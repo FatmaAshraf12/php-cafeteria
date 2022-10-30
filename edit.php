@@ -4,7 +4,7 @@ include __DIR__ . '/layout/header.php';
 
 require_once('User.php');
 $user = User::get_user($_REQUEST['id']);
-session_start();
+//session_start();
 if (isset($_SESSION['errors'])) {
 
   echo '<div class="alert alert-danger">';

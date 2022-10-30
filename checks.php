@@ -2,9 +2,11 @@
  include __DIR__ . '/layout/header.php';
 require_once __DIR__ . '/classes/order.php';
 require_once __DIR__ . '/classes/product_order.php';
-
+require_once 'isAdmin.php';
 $all_users = Order::getWith("orders.user_id ,name","users" , "orders.user_id = users.id" , " orders.user_id");
-    
+  
+is_admin();
+
 ?>
 
 
