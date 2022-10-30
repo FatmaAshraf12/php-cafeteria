@@ -71,6 +71,7 @@
 
     <!-- Template Javascript -->
     <script src="assets/js/main.js"></script>
+    <script src="./assets/js/product.js"></script>
 
   
      <!-- JavaScript Libraries -->

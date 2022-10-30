@@ -121,6 +121,9 @@ class DB
         return $sql->execute();
     }
 
+    static public function getBy($table, $key,$value)
+=======
+
 
     static public function deleteWhere($table,$key, $value){
         $query = "DELETE FROM $table WHERE $key=$value";
