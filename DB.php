@@ -2,12 +2,15 @@
 session_start();
 class DB
 {
-    static private $connection;
+    static public $connection;
     private function __construct($database_type, $host, $database_name, $username, $password)
     {
         $db = "$database_type:host=$host;dbname=$database_name";
         DB::$connection = new PDO($db, $username, $password);
     }
+
+    ////////////////////////////// CONNECT ////////////////////////////////////
+
     static function connect($database_type, $host, $database_name, $username, $password)
     {
         if (!isset(DB::$connection)) {
@@ -15,6 +18,9 @@ class DB
         }
         return DB::$connection;
     }
+
+    ////////////////////////////// GET ALL ////////////////////////////////////
+
     static public function getAll($table)
     {
         $query = "SELECT * FROM $table";
@@ -22,6 +28,45 @@ class DB
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
+
+
+    ////////////////////////////// GET ALL ////////////////////////////////////
+
+    static public function getCond($table,  $table2  ,$cond)
+    {
+        $query = "SELECT *FROM $table , $table2 WHERE ";
+        foreach ($cond as $key => $value) {
+            $query .= "$key = $value";
+            $query .= ' AND ';
+        }
+
+        $query =  rtrim($query, 'AND '); 
+       // echo $query;
+        $sql = DB::$connection->prepare($query);
+        $sql->execute();
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    static public function getCondOneTable($table ,$cond)
+    {
+        $query = "SELECT *  FROM $table  WHERE ";
+        foreach ($cond as $key => $value) {
+            $query .= "$key = $value";
+            $query .= ' AND ';
+        }
+
+        $query =  rtrim($query, 'AND '); 
+      //  echo $query;
+        $sql = DB::$connection->prepare($query);
+        $sql->execute();
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+
+
+    ////////////////////////////// GET ONE ////////////////////////////////////
+
     static public function getOne($table, $id)
     {
         $query = "SELECT * FROM $table WHERE id=$id";
@@ -30,14 +75,8 @@ class DB
         return $sql->fetch(PDO::FETCH_ASSOC);
     }
 
-
-    static public function getFromTwoTables($table1 ,$table2 , $p1 , $p2)
-    {
-        $query = "SELECT * FROM $table1 , $table2 WHERE $table1.$p1=$table2.$p2";
-        $sql = DB::$connection->prepare($query);
-        $sql->execute();
-        return $sql->fetchAll(PDO::FETCH_ASSOC);
-    }
+   
+        ////////////////////////////// UPDATE ////////////////////////////////////
 
     static public function update($table, $cond, $data)
     {
@@ -49,13 +88,16 @@ class DB
         $query .= ' WHERE ';
         foreach ($cond as $key => $value) {
             $query .= "$key = '$value'";
-            $query .= ' AND ';
-
         }
-        $query =  rtrim($query, 'AND '); 
         $sql = DB::$connection->prepare($query);
         return $sql->execute();
     }
+
+
+   
+
+    ////////////////////////////// CREATE ////////////////////////////////////
+
     static public function create($table, $data)
     {
         $query = "INSERT INTO $table(";
@@ -71,6 +113,7 @@ class DB
         $sql = DB::$connection->prepare($query);
         return $sql->execute();
     }
+    ////////////////////////////// DELETE ////////////////////////////////////
     static public function delete($table, $id)
     {
         $query = "DELETE FROM $table WHERE id=$id";
@@ -78,11 +121,117 @@ class DB
         return $sql->execute();
     }
 
-    static public function getBy($table, $key,$value)
+
+    static public function deleteWhere($table,$key, $value){
+        $query = "DELETE FROM $table WHERE $key=$value";
+        $sql = DB::$connection->prepare($query);
+        return $sql->execute();
+    }
+
+
+    static public function deleteCond($table, $cond)
     {
+        $query = "DELETE from $table WHERE ";
+        
+        foreach ($cond as $key => $value) {
+            $query .= "$key = '$value'";
+            $query .= ' AND ';
+        }
+        $query =  rtrim($query, 'AND ');  
+        //echo $query;
+
+        $sql = DB::$connection->prepare($query);
+        return $sql->execute();
+    }
+
+
+    ////////////////////////////// GET BY ////////////////////////////////////
+
+
+    static public function getByPaginate($table, $cond , $from , $num)
+    {
+
+        var_dump($table,$key,$value);
         $query = "SELECT * FROM $table WHERE $key=$value";
+
+        $query = "SELECT * ,$table.id as id1 FROM $table WHERE $cond LIMIT $from , $num";
+       // echo $query;
+
         $sql = DB::$connection->prepare($query);
         $sql->execute();
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
+      
+    }
+
+
+     ////////////////////////////// GET FROM TWO TABLES  ////////////////////////////////////
+  
+     static public function getFromTwoTables($cols, $table1 ,$table2 , $cond ,$group_by=null )
+     {
+        if(isset($group_by))
+                $query = "SELECT $cols FROM $table1 , $table2 WHERE  $cond group by $group_by";
+        
+        else
+         $query = "SELECT $cols FROM $table1 , $table2 WHERE $cond";
+         
+       //  echo $query;
+         $sql = DB::$connection->prepare($query);
+         $sql->execute();
+         return $sql->fetchAll(PDO::FETCH_ASSOC);
+     } 
+
+
+      ////////////////////////////// GET FROM TWO TABLES Paginate  ////////////////////////////////////
+  
+      static public function getFromTwoTablesPaginate($cols, $table1 ,$table2 , $cond ,$group_by=null,$start , $num )
+      {
+         if(isset($group_by))
+                $query = "SELECT $cols FROM $table1 , $table2 WHERE  $cond group by $group_by LIMIT $start , $num";
+         else
+                $query = "SELECT $cols FROM $table1 , $table2 WHERE $cond LIMIT $start , $num";
+          
+       //   echo $query;
+          $sql = DB::$connection->prepare($query);
+          $sql->execute();
+          return $sql->fetchAll(PDO::FETCH_ASSOC);
+      } 
+
+     /*************** Column Type "Enum" ***************/
+     static public function getColValues($table, $col )
+     {
+         $query = "SELECT COLUMN_TYPE FROM information_schema.`COLUMNS` WHERE TABLE_NAME='$table' AND COLUMN_NAME ='$col'";
+         $sql = DB::$connection->prepare($query);
+         $sql->execute();
+         return $sql->fetchAll(PDO::FETCH_ASSOC);
+     }
+
+
+     static public function customQuery($query )
+     {
+         $sql = DB::$connection->prepare($query);
+         $sql->execute();
+         return $sql->fetchAll(PDO::FETCH_ASSOC);
+     }
+
+
+
+     /*********************** PAGINATE ***********************/
+     public static function paginate($total,$num_of_record,$renderFun ){
+        $pagLink=''; 
+        $page = 1;
+        $total_pages = ceil($total / $num_of_record); 
+
+       for ($i=1; $i<=$total_pages; $i++)   
+          $pagLink .=    $i == $page ?  "<a class = 'active' onclick='$renderFun(".($i).")'>".$i." </a>"  :    "<a onclick='$renderFun(".($i).")'> ".$i." </a>"; 
+
+        echo $pagLink;
+     }
+    
+    
+    static public function query($query)
+    {
+        // var_dump($query);
+        $sql = DB::$connection->prepare($query);
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 

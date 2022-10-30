@@ -13,28 +13,15 @@ class ProductOrder extends DB
         return ProductOrder::getAll(ProductOrder::$table);
     }
 
-
-    static function getByOrderId($order_id)
+    static function getByOrderId($cols,$order_id) //with name
     {
-        return ProductOrder::getBy(ProductOrder::$table, "order_id",$order_id);
-    }
-/*
-    static function find($id)
-    {
-        return ProductOrder::getOne(ProductOrder::$table, $id);
+        return ProductOrder::getFromTwoTables($cols,ProductOrder::$table ,"product" , ProductOrder::$table.".product_id = product.id AND order_id = $order_id",null);
     }
 
-    static function getWith($table2 , $p1 , $p2)
+    static function deleteOrderProducts($cond)
     {
-    return ProductOrder::getFromTwoTables(ProductOrder::$table ,$table2 , $p1 , $p2);
+        return ProductOrder::deleteCond(ProductOrder::$table,$cond);
     }
-
-    static function updateStatus($id,$status)
-    {
-    return ProductOrder::update(ProductOrder::$table ,["id"=>$id] , ["status"=>$status]);
-    }
-
-*/
 }
 
 
