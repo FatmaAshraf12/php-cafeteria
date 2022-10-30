@@ -1,8 +1,28 @@
 <?php
+
 use function Composer\Autoload\includeFile;
 require __DIR__ . '/layout/header.php';
 require './DB.php';
  DB::connect('mysql','localhost','cafe project','root','');
+
+
+//use function Composer\Autoload\includeFile;
+//require __DIR__ . '/layout/header.php';
+//require './DB.php';
+//require './models/product.php';
+//require_once __DIR__ . '\connection.php';
+// DB::connect('mysql','localhost','cafe project','root','');
+
+ include __DIR__ . '/layout/header.php';
+require_once __DIR__ . '/classes/Product.php';
+require_once __DIR__ . '/classes/product_order.php';
+
+
+// $id =$_REQUEST['product_id'];
+// $orderprduct = product::find($id);
+// var_dump($orderprduct);
+
+
 ?>
     <!-- Navbar End -->
     <!-- Page Header Start -->
@@ -31,6 +51,7 @@ require './DB.php';
     <div class="container-fluid">
         <div class="row">
             <!--the Bill-->
+
              <div class="col-lg-5">
                                 <!---->
                 <div id="myDIV">  
@@ -110,11 +131,76 @@ require './DB.php';
                         </div>
                 </div>    
             </div> 
+
+                            <div class="col-lg-5">
+                                <!---->
+                            <div id="myDIV">     
+                                <div class="row align-items-center mb-3 col-sm-12 mt-2"id="showproduct">
+                                    <div class="col-4 col-sm-3 ">
+                                        <img style="width: 100%;" class="rounded-pill " src="" alt="" srcset="">
+                                    </div>
+                                    <div class="col-4 col-sm-2">
+                                        <h4><?php ?></h4>
+                                    </div>
+                                    <div class="col-sm-1 offset-1">
+                                        <input type='button' style="width: 30px;" value='-' field='quantity' onclick="decrementValue()" />
+                                    </div> 
+                                    <div class="col-4 col-sm-1">
+                                        <input type='text' style="width: 30px; text-align:center;" name='quantity' value='1' maxlength="2" max="10" size="1" id="number" />      
+                                    </div>
+                                    <div class="col-4 col-sm-1">
+                                        <input type='button' style="width: 30px;" value='+' field='quantity' onclick="incrementValue()" />
+                                    </div> 
+                                    <div class="col-4 col-sm-2 mb-1">
+                                        <button class="btn btn-primary">
+                                            <span class="product-total-price" ><?php  ?></span>
+                                        </button>
+                                    </div>
+                
+                                </div> <?php ?>
+                                <div class="row align-items-center col-sm-12">
+                                    
+                                        <form action="">
+                                            <textarea name="message" style="width: 300; height: 100px; margin-left:85px;" class="form-control" id="message" placeholder="Your message..." required></textarea>
+                                        </form>
+                                </div>
+                                <div class="row align-items-center col-sm-12 mt-2">      
+                                    <div class="form-group">
+                                        <select class="custom-select bg-transparent border-primary" style="height: 49px; width: 300px; margin-left: 100px;">
+                                            <option selected>Room</option>
+                                            <option value="1">Room 1</option>
+                                            <option value="2">Room 2</option>
+                                            <option value="3">Room 3</option>
+                                            <option value="3">Room 4</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row align-items-center col-sm-12 mt-2">
+                                    <div class="col-sm-4">
+                                        <input type="submit" class="btn btn-primary btn-lg btn-block" onclick="mFunction()">
+                                    </div>
+
+                            
+                                    <div class="col-sm-2 offset-3">
+                                        <h3>Total</h3>
+                                    </div>
+                                    <div class="col-sm-3"> 
+                                        <button class="btn btn-primary">
+                                            <span class="product-maxtotal-price" data-price="24.99"></span>
+                                        </button>
+                                    
+                                    </div>
+                                </div>
+                            </div>    
+                            </div> 
+
             <!---->
             <!--products-->
             <div class="col-lg-7">
                 <div class="row align-items-center mb-5 ml-2">
                     <?php      
+
                     $products = DB::getAll('product');
                        
                     foreach ($products as $single): ?> 
@@ -122,11 +208,20 @@ require './DB.php';
                         <div class="col-4 col-sm-4">
                         <img style="width: 130px;"  class="rounded-pill m-md-n4" src="assets/<?php echo $single['image'] ?>"alt="">                     
                         <h5 class="menu-price m-lg-n4">$<?php  echo $single['price'] ?></h5>
+
+                    $products = Product::get();          
+                    foreach ($products as $single): ?> 
+                    <div class="row align-items-center mt-5 col-sm-6 mr-1" >
+                        <div class="col-4 col-sm-4">
+                            <img style="width: 130px;"  class="rounded-pill m-md-n4" src="<?php echo $single['image'] ?>"alt="">
+                            <h5 class="menu-price m-lg-n4"><?php echo $single['price'] ?></h5>
+
                         </div>
                         <div class="col-8 col-sm-8">
                             <h4 class="ml-1"><?php echo $single['name'] ?></h4>
                             <span><?php echo $single['avilable'] ?> </span>    
                                 <div>
+
                                     <form action="./cart.php">
                                         <input type="hidden" name="product_id" 
                                           value="<?php echo $single["id"]; ?>">
@@ -146,3 +241,22 @@ require './DB.php';
    <?php
 require __DIR__ . '/layout/footer.php';
    ?>
+
+                                    <button class="btn btn-primary m-2 single" onclick="addToCart(<?php echo $single['id']; ?> )" >
+                                    Order
+                                    </button>
+                                </div>  
+                        </div>
+                    </div> 
+                     <?php  endforeach; ?>
+                <!---->   
+            </div>        
+    </div>
+
+    <!-- Footer Start -->
+   <?php
+   
+require __DIR__ . '/layout/footer.php';
+   ?>
+    <script src="assets/js/checks.js"></script>
+
