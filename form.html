@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <style>
+        *
+        {
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+         <div class="row">
+              <div class="col-md-3">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a href="product.html">Add product</a></li>
+                        <li><a href="viewproduct.php">View product</a></li>
+                        <!-- <li><a href="cart.php">View Cart </a></li> -->
+                      </ul>
+              </div>
+              <div class="col-md-9">
+                <form method="post" action="./test.php" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Product Name</label>
+                        <input type="text" name="name" class="form-control">
+                    </div>
+                    
+              
+                       <div class="form-group">
+                        <label>Product Image</label>
+                        <input type="file" name="product_image_name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Product Price</label>
+                        <input type="number" name="product_price" class="form-control">
+                    </div>
+                   
+                    
+                    <div class="form-group">
+                        <label>Product Desc</label>
+                        <textarea class="form-control" name="product_desc"></textarea>
+                    </div> 
+               
+                    
+                   
+                    <button type="submit"class="btn btn-primary btn-block btn-lg">
+                        Add
+                    </button>
+                
+                </form>
+    
+              </div>
+         </div>
+    </div>
+</body>
+</html>

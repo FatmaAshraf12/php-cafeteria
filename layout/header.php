@@ -41,9 +41,9 @@
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto p-4">
                     <a href="index.html" class="nav-item nav-link ">Home</a>
-                    <a href="about.html" class="nav-item nav-link">Products</a>
+                    <a href="product.php" class="nav-item nav-link">Products</a>
                     <a href="service.html" class="nav-item nav-link">Users</a>
-                    <a href="menu.html" class="nav-item nav-link">Manual Orders</a>
+                    <a href="" class="nav-item nav-link">Manual Orders</a>
                     <a href="checks.php" class="nav-item nav-link">Checks</a>
                     <a href="orders.php" class="nav-item nav-link">Orders</a>
 
@@ -52,3 +52,12 @@
         </nav>
     </div>
     <!-- Navbar End -->
+
+    <!-- require -->
+    <?php
+ 
+  
+
+
+    
+

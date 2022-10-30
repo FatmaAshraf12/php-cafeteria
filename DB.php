@@ -73,7 +73,6 @@ class DB
         $sql = DB::$connection->prepare($query);
         return $sql->execute();
     }
-
     static public function getBy($table, $key,$value)
     {
         $query = "SELECT * FROM $table WHERE $key=$value";
