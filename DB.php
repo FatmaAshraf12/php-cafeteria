@@ -1,4 +1,5 @@
 <?php
+session_start();
 class DB
 {
     static private $connection;
@@ -48,7 +49,10 @@ class DB
         $query .= ' WHERE ';
         foreach ($cond as $key => $value) {
             $query .= "$key = '$value'";
+            $query .= ' AND ';
+
         }
+        $query =  rtrim($query, 'AND '); 
         $sql = DB::$connection->prepare($query);
         return $sql->execute();
     }
@@ -78,6 +82,15 @@ class DB
     {
         $query = "SELECT * FROM $table WHERE $key=$value";
         $sql = DB::$connection->prepare($query);
+        $sql->execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    static public function findtById($table,$id)
+    {
+        $query = "SELECT * FROM $table WHERE id =$id";
+        $sql = DB::$connection->prepare($query);
+        $sql->execute();
+        return $data = $sql->fetch(PDO::FETCH_ASSOC);
     }
 }
