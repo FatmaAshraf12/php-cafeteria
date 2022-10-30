@@ -59,6 +59,12 @@ $admin = is_admin();
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto p-4">
+
+                    <a href="index.html" class="nav-item nav-link ">Home</a>
+                    <a href="product.php" class="nav-item nav-link">Products</a>
+                    <a href="service.html" class="nav-item nav-link">Users</a>
+                    <a href="" class="nav-item nav-link">Manual Orders</a>
+=======
                 <?php if((Auth::check() && Auth::user()['role'] != 'admin')){?>?
 
                     <a href="index.php" class="nav-item nav-link ">Home</a>
@@ -68,6 +74,7 @@ $admin = is_admin();
 
                <?php }
                     else if($admin) {?>?
+
 
                     <a href="checks.php" class="nav-item nav-link">Checks</a>
                     <a href="orders.php" class="nav-item nav-link">Orders</a>
@@ -90,3 +97,12 @@ $admin = is_admin();
         </nav>
     </div>
     <!-- Navbar End -->
+
+    <!-- require -->
+    <?php
+ 
+  
+
+
+    
+
