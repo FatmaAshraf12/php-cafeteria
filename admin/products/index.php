@@ -18,6 +18,7 @@ include('navbar.php');
 ?>
     <h1> All Products </h1>
     <!-- table Start -->
+    <div class="container">
     <div class="table-responsive">
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
@@ -49,6 +50,7 @@ include('navbar.php');
                 <?php endforeach ?>
             </tbody>
         </table>
+    </div>
     </div>
     <!-- table end -->
     <?php

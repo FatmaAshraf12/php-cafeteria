@@ -1,5 +1,5 @@
 <?php
-
+require_once('User.php');
 function validator($data, $rules){
 	$errors = [];
 
@@ -66,8 +66,9 @@ function validator($data, $rules){
 					if(empty($t[0]) || empty($t[1])){
 						throw new Exception("Your Unique parameters is not valid");
 					}
-					$exist = one("SELECT * FROM {$t[0]} WHERE $t[1]='{$data[$k]}' LIMIT 1");
+					$exist = User::user_query("SELECT * FROM {$t[0]} WHERE $t[1]='{$data[$k]}' LIMIT 1");
 
+					//var_dump($exist);
 					if ($exist) {
 						$errors[] = $data[$k].' has already been taken.';
 					}					
@@ -79,7 +80,9 @@ function validator($data, $rules){
 					if(empty($t[0]) || empty($t[1])){
 						throw new Exception("Your Exists parameters is not valid");
 					}
-					$exist = one("SELECT * FROM {$t[0]} WHERE $t[1]='{$data[$k]}' LIMIT 1");
+					$exist = User::user_query("SELECT * FROM {$t[0]} WHERE $t[1]='{$data[$k]}' LIMIT 1");
+				//	var_dump($exist);
+				//	exit();
 
 					if (!$exist) {
 						$errors[] = $data[$k]." doesn't match our records.";

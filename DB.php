@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 class DB
 {
     static public $connection;
@@ -230,8 +230,11 @@ class DB
     static public function query($query)
     {
         // var_dump($query);
+        var_dump(DB::$connection);
+
         $sql = DB::$connection->prepare($query);
-        return $sql->fetchAll(PDO::FETCH_ASSOC);
+        $sql->execute();
+        return $sql->fetch(PDO::FETCH_ASSOC);
     }
 
     static public function findtById($table,$id)
@@ -242,3 +245,4 @@ class DB
         return $data = $sql->fetch(PDO::FETCH_ASSOC);
     }
 }
+
