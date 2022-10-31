@@ -43,7 +43,7 @@ include('navbar.php');
                     <td>
                     	<button class="btn btn-primary"> <?php echo $value["avilable"] ? "Available" : "Unavilable"?></button>
                     	<a class="btn btn-secondary" href="edit.php?id=<?php echo $value["id"];?>"> Edite</a>
-                    	<button class="btn btn-danger delete"  data-id="<?php echo $value['id'] ?>" > Delete </button>                    
+                    	<button type="button"class="btn btn-danger delete" id="deleteButton" data-id="<?php echo $value['id'] ?>" > Delete </button>                    
                     </td>
                 </tr>
                 <?php endforeach ?>
