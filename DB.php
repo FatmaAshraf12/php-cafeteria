@@ -41,7 +41,6 @@ class DB
         }
 
         $query =  rtrim($query, 'AND '); 
-       // echo $query;
         $sql = DB::$connection->prepare($query);
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -56,16 +55,13 @@ class DB
         }
 
         $query =  rtrim($query, 'AND '); 
-      //  echo $query;
         $sql = DB::$connection->prepare($query);
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
 
-
-
-    ////////////////////////////// GET ONE ////////////////////////////////////
+    /////GET ONE
 
     static public function getOne($table, $id)
     {
@@ -75,7 +71,23 @@ class DB
         return $sql->fetch(PDO::FETCH_ASSOC);
     }
 
-   
+    /// get col by cond
+    static public function getColByCond($table,$table2, $col,$cond){
+        $query = "SELECT $col FROM $table ,$table2 WHERE ";
+
+        foreach ($cond as $key => $value) {
+            $query .= "$key = $value";
+            $query .= ' AND ';
+        }
+        $query =  rtrim($query, 'AND ');  
+
+       // echo $query;
+        $sql = DB::$connection->prepare($query);
+        $sql->execute();
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
         ////////////////////////////// UPDATE ////////////////////////////////////
 
     static public function update($table, $cond, $data)
@@ -86,9 +98,19 @@ class DB
         }
         $query = rtrim($query, ',');
         $query .= ' WHERE ';
+
         foreach ($cond as $key => $value) {
             $query .= "$key = '$value'";
+            $query .= ' AND ';
         }
+        $query =  rtrim($query, 'AND ');  
+
+/*
+        foreach ($cond as $key => $value) {
+            $query .= "$key = '$value'";
+        }*/
+
+        echo $query;
         $sql = DB::$connection->prepare($query);
         return $sql->execute();
     }
@@ -110,23 +132,22 @@ class DB
         $col = implode(',', $col);
         $values = implode(',', $values);
         $query .= "$col) VALUES($values)";
+
         $sql = DB::$connection->prepare($query);
         return $sql->execute();
+    }
+
+
+
+    static public function createWithReturnID($table, $data)
+    {
+        DB::create($table, $data);
+        return DB::$connection->lastInsertId();
     }
     ////////////////////////////// DELETE ////////////////////////////////////
     static public function delete($table, $id)
     {
         $query = "DELETE FROM $table WHERE id=$id";
-        $sql = DB::$connection->prepare($query);
-        return $sql->execute();
-    }
-
-    static public function getBy($table, $key,$value)
-=======
-
-
-    static public function deleteWhere($table,$key, $value){
-        $query = "DELETE FROM $table WHERE $key=$value";
         $sql = DB::$connection->prepare($query);
         return $sql->execute();
     }
@@ -141,7 +162,6 @@ class DB
             $query .= ' AND ';
         }
         $query =  rtrim($query, 'AND ');  
-        //echo $query;
 
         $sql = DB::$connection->prepare($query);
         return $sql->execute();
@@ -173,11 +193,20 @@ class DB
         else
          $query = "SELECT $cols FROM $table1 , $table2 WHERE $cond";
          
-       //  echo $query;
          $sql = DB::$connection->prepare($query);
          $sql->execute();
          return $sql->fetchAll(PDO::FETCH_ASSOC);
      } 
+
+
+
+     static public function getFromTwoTables1($table1 ,$table2 , $p1 , $p2)
+    {
+        $query = "SELECT * FROM $table1 , $table2 WHERE $table1.$p1=$table2.$p2";
+        $sql = DB::$connection->prepare($query);
+        $sql->execute();
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
 
 
       ////////////////////////////// GET FROM TWO TABLES Paginate  ////////////////////////////////////
@@ -189,7 +218,6 @@ class DB
          else
                 $query = "SELECT $cols FROM $table1 , $table2 WHERE $cond LIMIT $start , $num";
           
-       //   echo $query;
           $sql = DB::$connection->prepare($query);
           $sql->execute();
           return $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -229,8 +257,6 @@ class DB
     
     static public function query($query)
     {
-        // var_dump($query);
-        var_dump(DB::$connection);
 
         $sql = DB::$connection->prepare($query);
         $sql->execute();

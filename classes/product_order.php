@@ -22,6 +22,13 @@ class ProductOrder extends DB
     {
         return ProductOrder::deleteCond(ProductOrder::$table,$cond);
     }
+
+
+
+    static function insertProduct($price , $product_id ,$quantity , $order_id){
+
+        return ProductOrder::create(ProductOrder::$table,["price"=>$price , "product_id"=>$product_id , "amount"=>$quantity , "order_id"=>$order_id]);
+    }
 }
 
 

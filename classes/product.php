@@ -16,6 +16,10 @@ class Product extends DB
     {
         return Product::getOne(Product::$table, $id);
     }
+
+    static function getProductPrice($product_id){
+        return Product::getOne(Product::$table,$product_id);
+    }
   
 }
 

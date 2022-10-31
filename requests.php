@@ -63,14 +63,19 @@ if(isset($_GET['addToCartPId'])){
 if(isset($_GET['increasQuantity'])){
     $q = intval($_GET['increasQuantity']) ;
     $product_id=  intval($_GET['p_id']) ;
-    $user_id =  intval($_GET['user_idx']) ;
+    $user_id = $_SESSION["user_id"] ;
     $data = Cart::updateCol(["user_id"=>$user_id,"product_id"=>$product_id],["quantity"=>$q]);
 }
 
+
+
+
+
 if(isset($_GET['removeFromCart'])){
     $product_id = intval($_GET['removeFromCart']);
-    $user_id = intval($_GET['user_idx']);
+    $user_id = $_SESSION["user_id"] ;
     $r = Cart::deleteCartItem(["user_id"=>$user_id,"product_id"=>$product_id]);
+    
 }
 
 
@@ -234,5 +239,11 @@ if(isset($_GET['checks'])){
 }
 
 
+if(isset($_GET['createOrder'])){
+    
+   $user_id =  $_SESSION["user_id"];
+   $order_id = Order::createOrder($user_id,["user_id"=> $user_id , "status"=>'Processing' , "room"=>1]);
+  
+}
 
 ?>

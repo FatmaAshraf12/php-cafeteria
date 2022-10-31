@@ -97,6 +97,8 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
    <!-- my orders js -->
    <script src="assets/js/myorders.js"></script>
+   <script src="assets/js/product.js"></script>
+
 </body>
 
 </html>
