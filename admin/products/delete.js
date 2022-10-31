@@ -11,7 +11,7 @@ function delete_product() {
     .then((data) => {
       console.log(data);
       if (data) {
-        let btn = document.querySelector(`button[data-id='${id}']`);
+        let btn = document.querySelector(`.delete[data-id='${id}']`);
         btn.parentElement.parentElement.remove();
       }
     });

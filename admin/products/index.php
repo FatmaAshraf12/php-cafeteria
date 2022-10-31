@@ -41,7 +41,7 @@ include('navbar.php');
                     <td><?php echo $value["price"];?></td>
                     <td><img src="../../assets/img/<?php echo $value["image"];?>" alt="image" width="50px" height="50px"></td>
                     <td>
-                    	<button class="btn btn-primary"> <?php echo $value["avilable"] ? "Available" : "Unavilable"?></button>
+                    	<button type="button" class="btn btn-primary available" data-id="<?php echo $value['id'] ?>" ><?php echo $value["avilable"] ? "Available" : "Unavailable"?></button>
                     	<a class="btn btn-secondary" href="edit.php?id=<?php echo $value["id"];?>"> Edite</a>
                     	<button type="button"class="btn btn-danger delete" id="deleteButton" data-id="<?php echo $value['id'] ?>" > Delete </button>                    
                     </td>
@@ -64,6 +64,6 @@ include('footer.php');
 
     <script src="addproduct.js"></script>
     <script src="delete.js"></script>
-
+    <script src="changeAvailability.js"></script>
 </body>
 </html>
