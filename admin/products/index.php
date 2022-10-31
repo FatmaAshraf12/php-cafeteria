@@ -41,10 +41,9 @@ include('navbar.php');
                     <td><?php echo $value["price"];?></td>
                     <td><img src="../../assets/img/<?php echo $value["image"];?>" alt="image" width="50px" height="50px"></td>
                     <td>
-                    	<a class="btn btn-primary" href="http://"> Available</a>
-                        <a class="btn btn-secondary" href="show.php?id=<?php echo $value["id"];?>"> Show </a>  
+                    	<button class="btn btn-primary"> <?php echo $value["avilable"] ? "Available" : "Unavilable"?></button>
                     	<a class="btn btn-secondary" href="edit.php?id=<?php echo $value["id"];?>"> Edite</a>
-                    	<button type="button" class="btn btn-danger delete"  data-id="<?php echo $value['id'] ?>" > Delete </button>                    
+                    	<button class="btn btn-danger delete"  data-id="<?php echo $value['id'] ?>" > Delete </button>                    
                     </td>
                 </tr>
                 <?php endforeach ?>
