@@ -131,7 +131,6 @@ $user_id = $_SESSION["user_id"] ;
                              else 
                              echo "not available"; ?> </span>    
                                 <div>
-                                    <form action="./cart.php">
                                         <input type="hidden" name="product_id" 
                                           value="<?php echo $single["id"]; ?>">
                                           <?php if($single['avilable']){?>
@@ -139,7 +138,6 @@ $user_id = $_SESSION["user_id"] ;
                                         Order
                                         </button>
                                         <?php }?>
-                                    </form>
 
                                 </div>  
                         </div>

@@ -112,6 +112,8 @@ function deleteItem(id) {
   handleXMLOrder(id, '', 'removeFromCart=' + id);
   event.target.parentElement.parentElement.remove()
   productpagemaxtotal();
+
+  
 }
 
 

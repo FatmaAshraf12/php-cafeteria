@@ -270,5 +270,13 @@ class DB
         $sql->execute();
         return $data = $sql->fetch(PDO::FETCH_ASSOC);
     }
-}
+
+
+
+    static public function updateCol($table,$col,$value,$id)
+    {
+        $query = "UPDATE $table SET $col = $value WHERE id =$id";
+        $sql = DB::$connection->prepare($query);
+     $sql->execute();
+    }}
 

@@ -242,8 +242,17 @@ if(isset($_GET['checks'])){
 if(isset($_GET['createOrder'])){
     
    $user_id =  $_SESSION["user_id"];
-   $order_id = Order::createOrder($user_id,["user_id"=> $user_id , "status"=>'Processing' , "room"=>1]);
+   $order_id = OrderClass::createOrder($user_id,["user_id"=> $user_id , "status"=>'Processing' , "room"=>1]);
   
 }
+
+
+if(isset($_GET['deleteuserid'])){
+    
+}
+
+
+
+
 
 ?>
