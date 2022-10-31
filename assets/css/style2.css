@@ -203,3 +203,17 @@ table.table.table1-orders tbody tr {
     width: 100%;
     table-layout: fixed;
 }
+
+div#myDIV {
+    background-color: #da9f5b1f;
+    padding: 20px;
+}
+
+button#delete-product {
+    padding: 2px 8px;
+}
+
+span#product-total-price {
+    margin-left: 6px;
+    margin-right: 8px;
+}

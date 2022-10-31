@@ -33,7 +33,7 @@ function addToCartAdmin(id) {
     let val = document.querySelector('#users').value;
     handleXMLOrder(id, '.row .products-cart', 'addToCartPId=' + id + '&user_idx=' + val);
 }
-
+/*
 
 function increase() {
     let quantity = event.target.previousElementSibling.innerText;
@@ -53,7 +53,7 @@ function decrease() {
     let product_id = event.target.parentElement.getAttribute("p-id")
     handleXMLOrder(quantity, '', 'increasQuantity=' + quantity + '&user_idx=' + user + '&p_id=' + product_id);
 }
-
+*/
 function removeFromCart(id) {
     let val = document.querySelector('#users').value;
     handleXMLOrder(id, '', 'removeFromCart=' + id + '&user_idx=' + val);

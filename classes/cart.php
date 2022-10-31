@@ -18,9 +18,11 @@ class Cart extends DB
         return Cart::getCond(Cart::$table, $table2 , $cond);
     }
 
-    static function getByCondOneTable($cond)
+    /*********************************************** */ 
+    // get cart by user
+    static function getCartByUser($user_id)
     {
-        return Cart::getCondOneTable(Cart::$table , $cond);
+        return Cart::getCondOneTable(Cart::$table , ["user_id"=>$user_id]);
     }
 
     
@@ -39,19 +41,17 @@ class Cart extends DB
     }
 
 
-    
-
-    static function deleteCart($id)
-    {
-        return Cart::delete(Cart::$table, $id);
-    }
+    /********************** DELETE CART ************************/
 
     static function deleteCartItem($cond)
     {
+        /// delete from cart where x =y and f =u
         return Cart::deleteCond(Cart::$table,$cond);
     }
 
-
+    static function getTotal($user_id){
+       return Cart::getColByCond(Cart::$table, "product" , "SUM(price*cart.quantity) as total" , ["user_id"=>$user_id ,"product_id"=>"product.id"]);
+    }
 
   
 }

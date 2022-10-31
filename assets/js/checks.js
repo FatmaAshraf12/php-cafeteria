@@ -167,3 +167,11 @@ for (let i = 0; i < a.length; i++) {
         event.target.classList.add('active');
     })
 }
+
+
+
+
+/********************************** */
+function mFunction() {
+    handleXML(1, '#showproduct', "createOrder=", 1);
+}

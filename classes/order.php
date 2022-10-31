@@ -14,29 +14,34 @@ class Order extends DB
         return Order::getAll(Order::$table);
     }
 
-    /********************* find **************************/
-    static function find($id)
-    {
-        return Order::getOne(Order::$table, $id);
-    }
 
     /********************* getWhere **************************/
     static function getWhere($cond)
     {
         return Order::getCondOneTable(Order::$table, $cond );
     }
- /********************* getWhere **************************/
- static function getWherePaginate($cond,$from,$num)
- {
-     return Order::getByPaginate(Order::$table, $cond , $from,$num );
- }
+    /********************* getWhere **************************/
+    static function getWherePaginate($cond,$from,$num)
+    {
+        return Order::getByPaginate(Order::$table, $cond , $from,$num );
+    }
 
+    /********************* CREATE **************************/
 
-  /********************* CREATE **************************/
-
-static function createOrder($data){
-    return Order::create(Order::$table, $data);
-}
+    static function createOrder($user_id,$data){
+        $order_id =  Order::createWithReturnID(Order::$table, $data);
+        $items = Cart::getCartByUser($user_id);
+        
+        for($i=0 ; $i<count($items) ; $i++){
+            $product_id = $items[$i]['product_id'] ;
+            $quantity = $items[$i]['quantity'] ;
+            $price = Product::getProductPrice($product_id);
+            $price = $price["price"];
+            ProductOrder::insertProduct($price , $product_id ,$quantity , $order_id);
+        }
+        
+        Cart::deleteCartItem(["user_id"=>  $user_id]); 
+    }
 
     /********************* getWith **************************/
     static function getWith($cols,$table2 , $cond ,$group_by)
@@ -44,14 +49,13 @@ static function createOrder($data){
     return Order::getFromTwoTables($cols,Order::$table ,$table2 , $cond ,$group_by);
     }
 
-/********************* getWithPaginate **************************/
-static function getWithPaginate($cols,$table2 , $cond ,$group_by,$start,$num)
-{
-return Order::getFromTwoTablesPaginate($cols,Order::$table ,$table2 , $cond ,$group_by,$start,$num);
-}
+    /********************* getWithPaginate **************************/
+    static function getWithPaginate($cols,$table2 , $cond ,$group_by,$start,$num)
+    {
+    return Order::getFromTwoTablesPaginate($cols,Order::$table ,$table2 , $cond ,$group_by,$start,$num);
+    }
     
-
-    /********************* updateStatus **************************/
+    /********************* update order Status **************************/
     static function updateStatus($id,$status)
     {
         return Order::update(Order::$table ,["id"=>$id] , ["status"=>$status]);
@@ -82,6 +86,5 @@ return Order::getFromTwoTablesPaginate($cols,Order::$table ,$table2 , $cond ,$gr
         return  $values;
     }
 
-  /********************* CANCEL ORDER **************************/
 
 }
