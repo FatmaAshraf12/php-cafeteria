@@ -49,7 +49,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         $nameArray = explode('.',$imageName);
         $FileExtension = strtolower($nameArray[1]);
         if(!Validator($FileExtension,5)){
-            $Message['imageExtension'] = "Invalid Image Extension";
+            $Message['imageExtension'] = "Invalid Image Extension Allowed extensions jpg , png , jpeg";
         }
         if(count($Message) > 0){
             $_SESSION['messages'] = $Message;
